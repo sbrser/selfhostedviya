@@ -28,7 +28,7 @@ az network nsg rule create \
     --resource-group ${az_project}-rg \
     --nsg-name ${az_project}-nsg \
     --name ${az_project}-nsg-ssh \
-	--source-address-prefixes ${az_public_access_cidrs}
+    --source-address-prefixes ${az_public_access_cidrs} \
     --protocol tcp \
     --priority 1000 \
     --destination-port-range 22 \
@@ -38,7 +38,7 @@ az network nsg rule create \
     --resource-group ${az_project}-rg \
     --nsg-name ${az_project}-nsg \
     --name ${az_project}-nsg-web \
-    --source-address-prefixes ${az_public_access_cidrs}
+    --source-address-prefixes ${az_public_access_cidrs} \
     --protocol tcp \
     --priority 1001 \
     --destination-port-range 6443 \
