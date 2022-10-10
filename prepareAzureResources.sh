@@ -1,6 +1,7 @@
 #!/bin/bash
 # Set subscription and region 
 
+
 az account set -s "$az_subscription"
 az configure --defaults location=$az_region
 
