@@ -2,9 +2,9 @@
 
 # Define environment variables
 
-export az_subscription=BZL-CA-Architects
-export az_region=eastus
-export az_project=sbrserviya4single
+export az_subscription=BZL-CA-Architects <br /> 
+export az_region=eastus <br /> 
+export az_project=sbrserviya4single <br /> 
 
 # Clone this repository
 
