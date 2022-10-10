@@ -1,13 +1,14 @@
-# Definir subscription e região 
+#!/bin/bash
+# Set subscription and region 
 
 az account set -s "$az_subscription"
 az configure --defaults location=$az_region
 
-# Criar resource group
+# Create resourcegroup
 
 az group create -n ${az_project}-rg -l eastus
 
-# Criar VNET
+# Create VNET
 
 az network vnet create \
     --resource-group ${az_project}-rg \
@@ -16,7 +17,7 @@ az network vnet create \
     --subnet-name ${az_project}-subnet \
     --subnet-prefix 192.168.0.0/16
 
-# Criar NSG
+# Create NSG
 
 az network nsg create \
     --resource-group ${az_project}-rg \
@@ -46,7 +47,7 @@ az network vnet subnet update \
     --vnet-name ${az_project}-vnet \
     --network-security-group ${az_project}-nsg
 	
-# Criar VM
+# Create VM
 
 az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --image CentOS \
@@ -57,7 +58,7 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --nsg ${az_project}-nsg \
 --public-ip-sku Standard --no-wait
 
-# Criar LB
+# Create LB
 
 az network public-ip create \
     --resource-group ${az_project}-rg \
