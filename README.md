@@ -2,7 +2,7 @@
 
 # Define environment variables
 
-az_subscription=BZL-CA-Architects
+az_subscription=BZL-CA-Architects /n
 az_region=eastus
 az_project=sbrserviya4single
 
