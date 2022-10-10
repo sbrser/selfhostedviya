@@ -10,9 +10,9 @@ export az_public_access_cidrs="x.x.x.x/16 x.x.x.x/32" # Replace with the públic
 
 # Clone this repository
 
-git clone https://github.com/sbrser/selfhostedviya.git
+git clone https://github.com/sbrser/selfhostedviya.git <br />
 
 # Execute the script 
 
-chmod +x selfhostedviya/prepareAzureResources.sh
+chmod +x selfhostedviya/prepareAzureResources.sh <br />
 selfhostedviya/prepareAzureResources.sh
