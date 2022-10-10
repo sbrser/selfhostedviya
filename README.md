@@ -6,6 +6,11 @@ az_subscription=BZL-CA-Architects
 az_region=eastus
 az_project=sbrserviya4single
 
-# Download the prepareAzureResources.sh
+# Clone this repository
 
-git clone
+git clone https://github.com/sbrser/selfhostedviya.git
+
+# Execute the script 
+
+chmod +x selfhostedviya/prepareAzureResources.sh
+selfhostedviya/prepareAzureResources.sh
