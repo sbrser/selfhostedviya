@@ -27,5 +27,5 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 
 # Execute the script to prepare the Kubernetes Resources
 
-chmod +x selfhostedviya/prepareAzureResources.sh <br />
-selfhostedviya/prepareAzureResources.sh
+chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
+selfhostedviya/prepareKubernetesResources.sh
