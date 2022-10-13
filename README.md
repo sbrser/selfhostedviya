@@ -12,7 +12,20 @@ export az_public_access_cidrs="x.x.x.x/16" # Replace with the públic IP CIDR th
 
 git clone https://github.com/sbrser/selfhostedviya.git <br />
 
-# Execute the script 
+# Execute the script to prepare the Azure Resources
+
+chmod +x selfhostedviya/prepareAzureResources.sh <br />
+selfhostedviya/prepareAzureResources.sh
+
+# SSH to the Virtual Machine created
+
+ssh azureuser@${az_project}-vm -
+
+# Clone this repository 
+
+git clone https://github.com/sbrser/selfhostedviya.git <br />
+
+# Execute the script to prepare the Kubernetes Resources
 
 chmod +x selfhostedviya/prepareAzureResources.sh <br />
 selfhostedviya/prepareAzureResources.sh
