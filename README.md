@@ -15,7 +15,7 @@ export az_region=region                    # Replace with the azure region you w
 export az_project=projectname              # Replace with the name of the project you want. <br />
 export az_public_access_cidrs="x.x.x.x/16 $cloudshellIP" # Replace with the públic IP CIDR that will be used to access the resources.  <br />
 
-# Clone this repository
+# Clone this repository into the Azure Cloud Shell
 
 git clone https://github.com/sbrser/selfhostedviya.git <br />
 
@@ -28,8 +28,8 @@ selfhostedviya/prepareAzureResources.sh
 
 vmIP=`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'`
 ssh -i ~/.ssh/id_rsa -l azureuser ${vmIP}
-
-# Clone this repository 
+ 
+# Clone this repository into the Azure Virtual Machine
 
 sudo yum install -y git # Install git in the VM
 
