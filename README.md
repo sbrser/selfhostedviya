@@ -1,7 +1,12 @@
 # selfhostedviya
 
-# Define environment variables
+# Open the cloud Shell at the Azure Portal 
 
+https://portal.azure.com/
+
+![image](https://user-images.githubusercontent.com/115498782/195679636-5a242d10-14a5-4326-b387-86eaa4a4f370.png)
+
+# Define environment variables
   
 export az_subscription=subscription        # Replace with the subscription you want to create the resources.  <br /> 
 export az_region=region                    # Replace with the azure region you want to create the resources. <br />
