@@ -38,3 +38,15 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 
 chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
 selfhostedviya/prepareKubernetesResources.sh
+
+Verify if everything is running:
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl get pods --all-namespaces
+
+
+
+
