@@ -19,7 +19,7 @@ selfhostedviya/prepareAzureResources.sh
 
 # SSH to the Virtual Machine created
 
-ssh azureuser@${az_project}-vm -
+ssh -i ~/.ssh/id_rsa azureuser@${az_project}-vm
 
 # Clone this repository 
 
