@@ -30,6 +30,8 @@ ssh -i ~/.ssh/id_rsa azureuser@${az_project}-vm
 
 # Clone this repository 
 
+sudo yum install git # Install git in the VM
+
 git clone https://github.com/sbrser/selfhostedviya.git <br />
 
 # Execute the script to prepare the Kubernetes Resources
