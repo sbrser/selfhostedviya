@@ -86,6 +86,11 @@ EOF
 # deploy
 sudo kubeadm init --v=6 --config kubeadm-config.yaml 
 
+# Define kube config to access the cluster
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 # Install cluster networking CNI(Calico).
 kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
 curl https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml -O
