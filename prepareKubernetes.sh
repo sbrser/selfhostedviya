@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Install packages
 sudo yum install -y yum-utils git wget nfs-utils
