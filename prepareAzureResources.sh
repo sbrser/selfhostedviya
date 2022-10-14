@@ -57,7 +57,7 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --vnet-name ${az_project}-vnet --subnet ${az_project}-subnet \
 --admin-username azureuser \
 --generate-ssh-keys \
---size Standard_E4ds_v5 \
+--size ${az_vm_size} \
 --nsg ${az_project}-nsg \
 --public-ip-sku Standard --no-wait
 
