@@ -49,6 +49,10 @@ Verify if everything is running:
 
 kubectl get pods --all-namespaces
 
+# Execute the script to prepare OpenLDAP (Optional)
+
+tar -xf selfhostedviya/ldap-basic.tar
+
 
 
 
