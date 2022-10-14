@@ -51,7 +51,9 @@ kubectl get pods --all-namespaces
 
 # Execute the script to prepare OpenLDAP (Optional)
 
-tar -xf selfhostedviya/ldap-basic.tar
+chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
+selfhostedviya/prepareOpenLDAP.sh
+
 
 
 
