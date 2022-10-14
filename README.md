@@ -27,8 +27,12 @@ selfhostedviya/prepareAzureResources.sh
 
 # SSH to the Virtual Machine created
 
-vmIP=\`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'\` <br />
+vmIP=`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'` <br />
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
+
+Enter yes when this message appear:
+![image](https://user-images.githubusercontent.com/115498782/195848242-e0cb5e04-928f-48e5-8002-84fafe5f20a7.png)
+
  
 # Clone this repository into the Azure Virtual Machine
 
