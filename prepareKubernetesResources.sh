@@ -35,6 +35,7 @@ sudo yum-config-manager \
     https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 sudo sed -i "s/containerd.sock/containerd.sock --exec-opt native.cgroupdriver=systemd/g" /usr/lib/systemd/system/docker.service
+sudo usermod -aG docker $USER
 sudo systemctl daemon-reload
 sudo systemctl start docker
 sudo systemctl enable docker
