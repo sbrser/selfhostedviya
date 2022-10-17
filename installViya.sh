@@ -24,7 +24,7 @@ tar -zxf ${VIYA_ORDER}_stable_depassets.tgz
 # Copy the openssl cert manager
 
 mkdir -p site-config/security
-cp sas-bases/examples/configure-postgres site-config/configure-postgres
+cp sas-bases/examples/security/openssl-generated-ingress-certificate.yaml site-config/security
 
 # Copy the postgres config
 
