@@ -61,7 +61,7 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --nsg ${az_project}-nsg \
 --public-ip-sku Standard --no-wait
 
-# Create LB
+# Criar LB
 
 az network public-ip create \
     --resource-group ${az_project}-rg \
@@ -84,6 +84,20 @@ az network lb probe create \
     --protocol tcp \
     --port 6443   
 
+az network lb probe create \
+    --resource-group ${az_project}-rg \
+    --lb-name ${az_project}-lb \
+    --name ${az_project}-web2-probe \
+    --protocol tcp \
+    --port 443   
+
+az network lb probe create \
+    --resource-group ${az_project}-rg \
+    --lb-name ${az_project}-lb \
+    --name ${az_project}-web3-probe \
+    --protocol tcp \
+    --port 80   
+
 az network lb rule create \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb \
@@ -94,6 +108,34 @@ az network lb rule create \
     --frontend-ip-name ${az_project}-ip \
     --backend-pool-name ${az_project}-be-pool  \
     --probe-name ${az_project}-web-probe \
+    --disable-outbound-snat true \
+    --idle-timeout 15 \
+    --enable-tcp-reset true
+
+az network lb rule create \
+    --resource-group ${az_project}-rg \
+    --lb-name ${az_project}-lb \
+    --name ${az_project}-lb-rule \
+    --protocol tcp \
+    --frontend-port 443 \
+    --backend-port 443 \
+    --frontend-ip-name ${az_project}-ip \
+    --backend-pool-name ${az_project}-be-pool  \
+    --probe-name ${az_project}-web2-probe \
+    --disable-outbound-snat true \
+    --idle-timeout 15 \
+    --enable-tcp-reset true
+
+az network lb rule create \
+    --resource-group ${az_project}-rg \
+    --lb-name ${az_project}-lb \
+    --name ${az_project}-lb-rule \
+    --protocol tcp \
+    --frontend-port 80 \
+    --backend-port 80 \
+    --frontend-ip-name ${az_project}-ip \
+    --backend-pool-name ${az_project}-be-pool  \
+    --probe-name ${az_project}-web3-probe \
     --disable-outbound-snat true \
     --idle-timeout 15 \
     --enable-tcp-reset true
