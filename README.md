@@ -49,7 +49,7 @@ selfhostedviya/prepareKubernetesResources.sh
 
 kubectl get pods --all-namespaces
 
-# Execute the script to prepare OpenLDAP (Optional)
+# Execute the script to prepare OpenLDAP
 
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
 selfhostedviya/prepareOpenLDAP.sh
