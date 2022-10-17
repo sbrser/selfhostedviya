@@ -14,12 +14,12 @@ clientCredentialsSecret=`echo -n $SASAPISecret | base64`
 echo clientCredentialsId: $clientCredentialsId >> .viya4-orders-cli.yaml
 echo clientCredentialsSecret: $clientCredentialsSecret >> .viya4-orders-cli.yaml
 
-echo "docker run -v ~/viya4-orders-cli:/sas viya4-orders-cli deploymentAssets $VIYA_ORDER stable --config /sas/.viya4-orders-cli.yaml --file-path /sas/sasfiles --file-name ${VIYA_ORDER}_stable_depassets" | bash 
+echo "docker run -v ~/viya4-orders-cli:/sas viya4-orders-cli deploymentAssets $VIYA_ORDER stable --config /sas/.viya4-orders-cli.yaml --file-path /sas/sasfiles --file-name ${VIYA_ORDER}_depassets" | bash 
 
 # Configure assets to install
 
 cd sasfiles 
-tar -zxf ${VIYA_ORDER}_stable_depassets.tgz
+tar -zxf ${VIYA_ORDER}_depassets.tgz
 
 # Copy the openssl cert manager
 
