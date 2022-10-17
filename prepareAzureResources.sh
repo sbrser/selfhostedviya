@@ -59,6 +59,7 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --generate-ssh-keys \
 --size ${az_vm_size} \
 --nsg ${az_project}-nsg \
+--os-disk-size-gb ${az_vm_disk_size_gb} \
 --public-ip-sku Standard --no-wait
 
 # Criar LB
