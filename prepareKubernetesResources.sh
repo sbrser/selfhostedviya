@@ -7,13 +7,18 @@ dns_prefix=`hostname | sed 's/-vm//'`
 export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
 # Install packages
-sudo yum install -y yum-utils git wget nfs-utils
+sudo yum install -y yum-utils git wget nfs-utils cloud-utils-growpart gdisk
 
 wget https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz && \
 tar xvf helm-v3.7.0-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin
 
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+
+# Grow OS Disk 
+
+sudo growpart /dev/sda 2
+sudo xfs_growfs /
 
 # Swap disabled
 sudo swapoff -a
