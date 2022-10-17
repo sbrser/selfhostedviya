@@ -3,13 +3,10 @@
 # Clone Viya 4 Order Cli and get the assets
 git clone https://github.com/sassoftware/viya4-orders-cli.git
 
-
-
 cd viya4-orders-cli
 sudo chown $USER /var/run/docker.sock
 docker build . -t viya4-orders-cli
 mkdir sasfiles
-
 
 clientCredentialsId=`echo -n $SASAPIKey | base64`
 clientCredentialsSecret=`echo -n $SASAPISecret | base64`
