@@ -29,7 +29,7 @@ cp sas-bases/examples/configure-postgres site-config/configure-postgres
 # Copy the postgres config
 
 mkdir -p site-config/configure-postgres/internal/pgo-client
-cp -r sas-bases/examples/configure-postgres/internal/pgo-client site-config/configure-postgres/internal/pgo-client
+cp -r sas-bases/examples/configure-postgres/internal/pgo-client site-config/configure-postgres/internal/
 
 # Create the storageclass.yaml file
 
