@@ -30,7 +30,7 @@ selfhostedviya/prepareAzureResources.sh
 vmIP=`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'` <br />
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 
-Enter yes when this message appear: <br />
+## Enter yes when this message appear: <br />
 ![image](https://user-images.githubusercontent.com/115498782/195848242-e0cb5e04-928f-48e5-8002-84fafe5f20a7.png)
 
  
@@ -45,7 +45,7 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
 selfhostedviya/prepareKubernetesResources.sh
 
-Verify if everything is running:
+## Verify if everything is running:
 
 kubectl get pods --all-namespaces
 
@@ -53,6 +53,10 @@ kubectl get pods --all-namespaces
 
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
 selfhostedviya/prepareOpenLDAP.sh
+
+## Verify if everything is running:
+
+kubectl get pods --all-namespaces
 
 # Execute the script to Install Viya
 
