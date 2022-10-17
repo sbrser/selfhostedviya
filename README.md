@@ -65,9 +65,9 @@ kubectl get pods --all-namespaces
 
 ![image](https://user-images.githubusercontent.com/115498782/196185492-58e5332f-112f-4583-a07c-8683a400c21c.png)
 
-SASAPIKey=key                 # Replace with the API Key from your created application at https://apiportal.sas.com.  <br /> 
-SASAPISecret=secret           # Replace with the API Sectret from your created application at https://apiportal.sas.com.  <br /> 
-VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. <br /> 
+export SASAPIKey=key                 # Replace with the API Key from your created application at https://apiportal.sas.com.  <br /> 
+export SASAPISecret=secret           # Replace with the API Sectret from your created application at https://apiportal.sas.com.  <br /> 
+export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. <br /> 
 
 chmod +x selfhostedviya/installViya.sh <br />
 selfhostedviya/installViya.sh
