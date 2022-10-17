@@ -60,6 +60,16 @@ kubectl get pods --all-namespaces
 
 # Execute the script to Install Viya
 
+### Define the Environment Variables below replacing with the correct values
+### SASAPIKey and SASAPISecret must be created at SAS Viya Orders API, instructions at https://apiportal.sas.com/get-started
+### Viya Order at https://my.sas.com/en/home.html
+
+![image](https://user-images.githubusercontent.com/115498782/196185492-58e5332f-112f-4583-a07c-8683a400c21c.png)
+
+SASAPIKey=key                 # Replace with the API Key from your created application at https://apiportal.sas.com.  <br /> 
+SASAPISecret=secret           # Replace with the API Sectret from your created application at https://apiportal.sas.com.  <br /> 
+VIYA_ORDER=order              # Replace with the viya order received by email.  <br /> 
+
 chmod +x selfhostedviya/installViya.sh <br />
 selfhostedviya/installViya.sh
 
