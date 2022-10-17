@@ -4,7 +4,7 @@
 curl -H Metadata:true http://169.254.169.254/metadata/instance?api-version=2017-03-01| python -m json.tool > vminfo.txt
 vm_location=`cat vminfo.txt | grep location | cut -d ":" -f 2 | sed 's/ "//' | sed 's/",//'`
 dns_prefix=`hostname | sed 's/-vm//'`
-ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
+export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
 # Install packages
 sudo yum install -y yum-utils git wget nfs-utils
