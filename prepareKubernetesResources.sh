@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Define ingress_alias
+curl -H Metadata:true http://169.254.169.254/metadata/instance?api-version=2017-03-01| python -m json.tool > vminfo.txt
+vm_location=`cat vminfo.txt | grep location | cut -d ":" -f 2 | sed 's/ "//' | sed 's/",//'`
+dns_prefix=`hostname | sed 's/-vm//'`
+ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
+
 # Install packages
 sudo yum install -y yum-utils git wget nfs-utils
 
@@ -69,7 +75,7 @@ kubernetesVersion: v1.23.1
 networking:
   podSubnet: "192.168.0.0/16"
   serviceSubnet: "192.169.0.0/16"
-  dnsDomain: "sbrserviya4single.eastus.cloudapp.azure.com"
+  dnsDomain: "$ingress_alias"
 ---
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
