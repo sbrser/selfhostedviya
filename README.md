@@ -54,6 +54,10 @@ kubectl get pods --all-namespaces
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
 selfhostedviya/prepareOpenLDAP.sh
 
+# Execute the script to Install Viya
+
+chmod +x selfhostedviya/installViya.sh <br />
+selfhostedviya/installViya.sh
 
 
 
