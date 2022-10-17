@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# Set subscription and region
+# Definir subscription e região 
 
-az account set -s $az_subscription
+az account set -s "$az_subscription"
 az configure --defaults location=$az_region
 
-# Create resourcegroup
+# Criar resource group
 
-az group create -n ${az_project}-rg -l ${az_region}
+az group create -n ${az_project}-rg -l eastus
 
-# Create VNET
+# Criar VNET
 
 az network vnet create \
     --resource-group ${az_project}-rg \
@@ -18,7 +18,7 @@ az network vnet create \
     --subnet-name ${az_project}-subnet \
     --subnet-prefix 192.168.0.0/16
 
-# Create NSG
+# Criar NSG
 
 az network nsg create \
     --resource-group ${az_project}-rg \
@@ -28,7 +28,7 @@ az network nsg rule create \
     --resource-group ${az_project}-rg \
     --nsg-name ${az_project}-nsg \
     --name ${az_project}-nsg-ssh \
-    --source-address-prefixes ${az_public_access_cidrs} \
+	--source-address-prefixes ${az_public_access_cidrs} \
     --protocol tcp \
     --priority 1000 \
     --destination-port-range 22 \
@@ -38,11 +38,12 @@ az network nsg rule create \
     --resource-group ${az_project}-rg \
     --nsg-name ${az_project}-nsg \
     --name ${az_project}-nsg-web \
-    --source-address-prefixes ${az_public_access_cidrs} \
+	--source-address-prefixes ${az_public_access_cidrs} \
     --protocol tcp \
     --priority 1001 \
-    --destination-port-range 6443 \
+    --destination-port-range 6443 443 80 \
     --access allow
+
 
 az network vnet subnet update \
     -g ${az_project}-rg \
@@ -50,7 +51,7 @@ az network vnet subnet update \
     --vnet-name ${az_project}-vnet \
     --network-security-group ${az_project}-nsg
 	
-# Create VM
+# Criar VM
 
 az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --image CentOS \
@@ -102,7 +103,7 @@ az network lb probe create \
 az network lb rule create \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb \
-    --name ${az_project}-lb-rule \
+    --name ${az_project}-lb-rule-6443 \
     --protocol tcp \
     --frontend-port 6443 \
     --backend-port 6443 \
@@ -116,7 +117,7 @@ az network lb rule create \
 az network lb rule create \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb \
-    --name ${az_project}-lb-rule \
+    --name ${az_project}-lb-rule-443 \
     --protocol tcp \
     --frontend-port 443 \
     --backend-port 443 \
@@ -130,7 +131,7 @@ az network lb rule create \
 az network lb rule create \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb \
-    --name ${az_project}-lb-rule \
+    --name ${az_project}-lb-rule-80 \
     --protocol tcp \
     --frontend-port 80 \
     --backend-port 80 \
