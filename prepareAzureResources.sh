@@ -65,6 +65,8 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 
 # Criar LB
 
+# Criar LB
+
 az network public-ip create \
     --resource-group ${az_project}-rg \
     --name ${az_project}-ip \
@@ -82,37 +84,16 @@ az network lb create \
 az network lb probe create \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb \
-    --name ${az_project}-web-probe \
+    --name ${az_project}-https-probe \
     --protocol tcp \
-    --port 6443   
+    --port 30443   
 
 az network lb probe create \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb \
-    --name ${az_project}-web2-probe \
+    --name ${az_project}-http-probe \
     --protocol tcp \
-    --port 443   
-
-az network lb probe create \
-    --resource-group ${az_project}-rg \
-    --lb-name ${az_project}-lb \
-    --name ${az_project}-web3-probe \
-    --protocol tcp \
-    --port 80   
-
-az network lb rule create \
-    --resource-group ${az_project}-rg \
-    --lb-name ${az_project}-lb \
-    --name ${az_project}-lb-rule-6443 \
-    --protocol tcp \
-    --frontend-port 6443 \
-    --backend-port 6443 \
-    --frontend-ip-name ${az_project}-ip \
-    --backend-pool-name ${az_project}-be-pool  \
-    --probe-name ${az_project}-web-probe \
-    --disable-outbound-snat true \
-    --idle-timeout 15 \
-    --enable-tcp-reset true
+    --port 30080   
 
 az network lb rule create \
     --resource-group ${az_project}-rg \
@@ -120,10 +101,10 @@ az network lb rule create \
     --name ${az_project}-lb-rule-443 \
     --protocol tcp \
     --frontend-port 443 \
-    --backend-port 443 \
+    --backend-port 30443 \
     --frontend-ip-name ${az_project}-ip \
     --backend-pool-name ${az_project}-be-pool  \
-    --probe-name ${az_project}-web2-probe \
+    --probe-name ${az_project}-https-probe \
     --disable-outbound-snat true \
     --idle-timeout 15 \
     --enable-tcp-reset true
@@ -134,10 +115,10 @@ az network lb rule create \
     --name ${az_project}-lb-rule-80 \
     --protocol tcp \
     --frontend-port 80 \
-    --backend-port 80 \
+    --backend-port 30080 \
     --frontend-ip-name ${az_project}-ip \
     --backend-pool-name ${az_project}-be-pool  \
-    --probe-name ${az_project}-web3-probe \
+    --probe-name ${az_project}-http-probe \
     --disable-outbound-snat true \
     --idle-timeout 15 \
     --enable-tcp-reset true
