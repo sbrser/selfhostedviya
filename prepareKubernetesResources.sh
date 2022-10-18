@@ -147,4 +147,26 @@ kubectl taint node $NodeN node-role.kubernetes.io/master:NoSchedule-
 
 kubectl create namespace ingress-nginx
 
+cat <<EOF | tee ingress_nodeport.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx-controller
+  labels:
+    name: ingress-nginx-controller
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      nodePort: 30080
+      name: http
+    - port: 443
+      nodePort: 30443
+      name: https
+  selector:
+    name: ingress-nginx-controller
+EOF
+
+kubectl -n ingress-nginx apply -f ingress_nodeport.yaml
+
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.4.0/deploy/static/provider/baremetal/deploy.yaml
