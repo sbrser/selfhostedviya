@@ -2,7 +2,7 @@
 
 This project allow you to install Viya in a single Virtual Machine at Microsoft Azure. Follow the steps below to install.
 
-# Pré-requisites
+# Requirements
 
 - Azure Subscription
 - Your Azure User Account should belong to Azure Subscription Roles "Owner" or "Contributor"
