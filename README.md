@@ -9,13 +9,15 @@ This project allow you to install Viya in a single Virtual Machine at Microsoft 
 - SASAPIKey and SASAPISecret (SAS Viya Orders API - https://apiportal.sas.com/get-started)
 - SAS Viya Order
 
-# Open the cloud Shell at the Azure Portal 
+# Steps
+
+## Open the cloud Shell at the Azure Portal 
 
 https://portal.azure.com/
 
 ![image](https://user-images.githubusercontent.com/115498782/195679636-5a242d10-14a5-4326-b387-86eaa4a4f370.png)
 
-# Define environment variables
+## Define environment variables
 
 cloudshellIP=`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'` <br /> 
 export az_subscription=subscription        # Replace with the subscription you want to create the resources.  <br /> 
@@ -26,16 +28,16 @@ export az_vm_size=Standard_E16ds_v5        # Standard_E16ds_v5 is the minimal re
 export az_vm_disk_size_gb=300              # OS disk size 300GB is the minimal required to this project. <br />
 
 
-# Clone this repository into the Azure Cloud Shell
+## Clone this repository into the Azure Cloud Shell
 
 git clone https://github.com/sbrser/selfhostedviya.git <br />
 
-# Execute the script to prepare the Azure Resources
+## Execute the script to prepare the Azure Resources
 
 chmod +x selfhostedviya/prepareAzureResources.sh <br />
 source selfhostedviya/prepareAzureResources.sh
 
-# SSH to the Virtual Machine created
+## SSH to the Virtual Machine created
 
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 
@@ -43,30 +45,30 @@ ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 ![image](https://user-images.githubusercontent.com/115498782/195848242-e0cb5e04-928f-48e5-8002-84fafe5f20a7.png)
 
  
-# Clone this repository into the Azure Virtual Machine
+## Clone this repository into the Azure Virtual Machine
 
 sudo yum install -y git # Install git in the VM <br />
 git clone https://github.com/sbrser/selfhostedviya.git <br />
 
-# Execute the script to prepare the Kubernetes Resources
+## Execute the script to prepare the Kubernetes Resources
 
 chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
 source selfhostedviya/prepareKubernetesResources.sh
 
-## Verify if everything is running:
+### Verify if everything is running:
 
 kubectl get pods --all-namespaces
 
-# Execute the script to prepare OpenLDAP
+## Execute the script to prepare OpenLDAP
 
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
 source selfhostedviya/prepareOpenLDAP.sh
 
-## Verify if ldap is running:
+### Verify if ldap is running:
 
 kubectl get pods -n kubectl -n ldap-basic
 
-# Execute the script to Install Viya
+## Execute the script to Install Viya
 
 - Define the Environment Variables below replacing with the correct values
 - SASAPIKey and SASAPISecret must be created at SAS Viya Orders API, instructions at https://apiportal.sas.com/get-started
@@ -79,7 +81,3 @@ export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wi
 
 chmod +x selfhostedviya/installViya.sh <br />
 source selfhostedviya/installViya.sh
-
-
-
-
