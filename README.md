@@ -55,7 +55,7 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
 source selfhostedviya/prepareKubernetesResources.sh
 
-### Verify if everything is running:
+- Verify if everything is running:
 
 kubectl get pods --all-namespaces
 
@@ -64,7 +64,7 @@ kubectl get pods --all-namespaces
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
 source selfhostedviya/prepareOpenLDAP.sh
 
-### Verify if ldap is running:
+- Verify if ldap is running:
 
 kubectl get pods -n kubectl -n ldap-basic
 
