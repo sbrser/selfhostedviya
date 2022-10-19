@@ -26,7 +26,7 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 # Execute the script to prepare the Azure Resources
 
 chmod +x selfhostedviya/prepareAzureResources.sh <br />
-selfhostedviya/prepareAzureResources.sh
+source selfhostedviya/prepareAzureResources.sh
 
 # SSH to the Virtual Machine created
 
