@@ -44,7 +44,7 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 # Execute the script to prepare the Kubernetes Resources
 
 chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
-selfhostedviya/prepareKubernetesResources.sh
+source selfhostedviya/prepareKubernetesResources.sh
 
 ## Verify if everything is running:
 
@@ -53,7 +53,7 @@ kubectl get pods --all-namespaces
 # Execute the script to prepare OpenLDAP
 
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
-selfhostedviya/prepareOpenLDAP.sh
+source selfhostedviya/prepareOpenLDAP.sh
 
 ## Verify if ldap is running:
 
@@ -71,7 +71,7 @@ export SASAPISecret=secret           # Replace with the API Sectret from your cr
 export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. <br /> 
 
 chmod +x selfhostedviya/installViya.sh <br />
-selfhostedviya/installViya.sh
+source selfhostedviya/installViya.sh
 
 
 
