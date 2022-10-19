@@ -6,7 +6,8 @@ This project allow you to install Viya in a single Virtual Machine at Microsoft 
 
 - Azure Subscription
 - Your Azure User Account should belong to Azure Subscription Roles "Owner" or "Contributor"
-
+- SASAPIKey and SASAPISecret (SAS Viya Orders API - https://apiportal.sas.com/get-started)
+- SAS Viya Order
 
 # Open the cloud Shell at the Azure Portal 
 
