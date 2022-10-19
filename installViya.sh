@@ -74,6 +74,8 @@ vm_location=`cat vminfo.txt | grep location | cut -d ":" -f 2 | sed 's/ "//' | s
 dns_prefix=`hostname | sed 's/-vm//'`
 export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
+echo Ingress Alias: $ingress_alias
+
 # Create kustomization.yaml file
 cat > ~/viya4-orders-cli/sasfiles/kustomization.yaml <<-EOF
 ---
