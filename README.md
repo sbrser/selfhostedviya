@@ -1,4 +1,6 @@
-# selfhostedviya
+# selfhostedviya for Azure Cloud
+
+This project allow you to install Viya in a single Virtual Machine at Microsoft Azure. Follow the steps below to install.
 
 # Open the cloud Shell at the Azure Portal 
 
