@@ -53,9 +53,9 @@ kubectl get pods --all-namespaces
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
 selfhostedviya/prepareOpenLDAP.sh
 
-## Verify if everything is running:
+## Verify if ldap is running:
 
-kubectl get pods --all-namespaces
+kubectl get pods -n kubectl -n ldap-basic
 
 # Execute the script to Install Viya
 
