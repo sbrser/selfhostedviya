@@ -79,16 +79,53 @@ export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 echo Ingress Alias: $ingress_alias
 
 # Create kustomization.yaml file
+cat > ~/viya4-orders-cli/sasfiles/site-config/storageclass.yaml <<-EOF
+kind: RWXStorageClass
+metadata:
+ name: wildcard
+spec:
+ storageClassName: sas
+EOF
+
+
+# Create sitedefault.yaml file
+
+tee  ~/viya4-orders-cli/sasfiles/site-config/sitedefault.yaml > /dev/null << "EOF"
+config:
+    application:
+        sas.identities.providers.ldap.connection:
+            host: openldap-service.ldap-basic.svc.cluster.local
+            password: lnxsas
+            port: 389
+            userDN: cn=admin,dc=acme,dc=com
+            url: ldap://${sas.identities.providers.ldap.connection.host}:${sas.identities.providers.ldap.connection.port}
+        sas.identities.providers.ldap.group:
+            accountId: 'cn'
+            baseDN: 'dc=acme,dc=com'
+            objectFilter: '(objectClass=groupOfUniqueNames)'
+        sas.identities.providers.ldap.user:
+            accountId: 'cn'
+            baseDN: 'dc=acme,dc=com'
+            objectFilter: '(objectClass=person)'
+        sas.identities:
+            administrator: 'sasadm'
+        sas.logon.initial:
+            user: sasboot
+            password: lnxsas
+EOF
+
+
+# Create kustomization.yaml file
 cat > ~/viya4-orders-cli/sasfiles/kustomization.yaml <<-EOF
 ---
-namespace: viya
+namespace: viya 
 resources:
 - sas-bases/base
 - sas-bases/overlays/network/networking.k8s.io 
 - site-config/security/openssl-generated-ingress-certificate.yaml 
 - sas-bases/overlays/cas-server
+- sas-bases/overlays/crunchydata/postgres-operator
 - sas-bases/overlays/postgres/platform-postgres
-- site-config/postgres/pgo-client 
 # If your deployment contains SAS Data Science Programming, comment out the next line
 - sas-bases/overlays/internal-elasticsearch
 - sas-bases/overlays/update-checker
@@ -105,9 +142,8 @@ transformers:
 - sas-bases/overlays/internal-elasticsearch/internal-elasticsearch-transformer.yaml
 # Mount information
 # - site-config/{{ DIRECTORY-PATH }}/cas-add-host-mount.yaml
-- sas-bases/overlays/scaling/single-replica/transformer.yaml
-- site-config/postgres/postgres-replicas-transformer.yaml
 components:
+- sas-bases/components/crunchydata/internal-platform-postgres 
 - sas-bases/components/security/core/base/full-stack-tls 
 - sas-bases/components/security/network/networking.k8s.io/ingress/nginx.ingress.kubernetes.io/full-stack-tls 
 patches:
@@ -132,7 +168,6 @@ configMapGenerator:
   literals:
   - SAS_SERVICES_URL=https://${ingress_alias}:443 
   # - SAS_URL_EXTERNAL_VIYA={{ EXTERNAL-PROXY-URL }}
-  
 secretGenerator:
   - name: sas-consul-config            ## This injects content into consul. You can add, but not replace
     behavior: merge
