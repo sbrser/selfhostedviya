@@ -28,8 +28,10 @@ cp sas-bases/examples/security/openssl-generated-ingress-certificate.yaml site-c
 
 # Copy the postgres config
 
-mkdir -p site-config/configure-postgres/internal/pgo-client
-cp -r sas-bases/examples/configure-postgres/internal/pgo-client site-config/configure-postgres/internal/
+mkdir -p site-config/postgres
+cp -R sas-bases/examples/configure-postgres/internal/pgo-client site-config/postgres/
+sed 's/{{ REPLICAS-COUNT }}/0/' sas-bases/examples/postgres/replicas/postgres-replicas-transformer.yaml > site-config/postgres/postgres-replicas-transformer.yaml
+
 
 # Create the storageclass.yaml file
 
@@ -86,7 +88,7 @@ resources:
 - site-config/security/openssl-generated-ingress-certificate.yaml 
 - sas-bases/overlays/cas-server
 - sas-bases/overlays/internal-postgres
-- site-config/configure-postgres/internal/pgo-client 
+- site-config/postgres/pgo-client 
 # If your deployment contains SAS Data Science Programming, comment out the next line
 - sas-bases/overlays/internal-elasticsearch
 - sas-bases/overlays/update-checker
@@ -94,16 +96,17 @@ resources:
 configurations:
 - sas-bases/overlays/required/kustomizeconfig.yaml
 transformers:
-- sas-bases/overlays/cas-server/cas-sssd-sidecar.yaml
 # If your deployment does not support privileged containers or if your deployment
 # contains SAS Data Science Programming, comment out the next line
 - sas-bases/overlays/internal-elasticsearch/sysctl-transformer.yaml
 - sas-bases/overlays/required/transformers.yaml
-- sas-bases/overlays/cas-server/auto-resources/remove-resources.yaml 
+#- sas-bases/overlays/cas-server/auto-resources/remove-resources.yaml 
 # If your deployment contains SAS Data Science Programming, comment out the next line
 - sas-bases/overlays/internal-elasticsearch/internal-elasticsearch-transformer.yaml
 # Mount information
 # - site-config/{{ DIRECTORY-PATH }}/cas-add-host-mount.yaml
+- sas-bases/overlays/scaling/single-replica/transformer.yaml
+- site-config/postgres/postgres-replicas-transformer.yaml
 components:
 - sas-bases/components/security/core/base/full-stack-tls 
 - sas-bases/components/security/network/networking.k8s.io/ingress/nginx.ingress.kubernetes.io/full-stack-tls 
