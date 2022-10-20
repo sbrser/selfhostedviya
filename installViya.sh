@@ -87,7 +87,7 @@ resources:
 - sas-bases/overlays/network/networking.k8s.io 
 - site-config/security/openssl-generated-ingress-certificate.yaml 
 - sas-bases/overlays/cas-server
-- sas-bases/overlays/internal-postgres
+- sas-bases/overlays/postgres/platform-postgres
 - site-config/postgres/pgo-client 
 # If your deployment contains SAS Data Science Programming, comment out the next line
 - sas-bases/overlays/internal-elasticsearch
