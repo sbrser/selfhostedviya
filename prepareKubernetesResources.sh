@@ -80,7 +80,7 @@ kubernetesVersion: v1.23.1
 networking:
   podSubnet: "192.168.0.0/16"
   serviceSubnet: "192.169.0.0/16"
-  dnsDomain: "$ingress_alias"
+  dnsDomain: "cluster.local"
 ---
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
