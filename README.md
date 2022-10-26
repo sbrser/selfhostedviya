@@ -89,8 +89,10 @@ time kubectl -n viya wait \
      pod \
      --selector='app.kubernetes.io/name=sas-readiness' \
       --timeout=2700s
-      
+    
 ## When the time command return the environment is ready to use
+
+![image](https://user-images.githubusercontent.com/115498782/198111084-10e83014-e81a-418e-98e6-069467df93be.png)
 
 ### Get the URL with the command:
 
