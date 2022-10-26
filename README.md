@@ -19,7 +19,7 @@ https://portal.azure.com/
 
 ## Define environment variables
 
-cloudshellIP=$(curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//') <br /> 
+cloudshellIP=\`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'\` <br /> 
 export az_subscription=subscription        # Replace with the subscription you want to create the resources.  <br /> 
 export az_region=region                    # Replace with the azure region you want to create the resources. <br />
 export az_project=projectname              # Replace with the name of the project you want. <br />
