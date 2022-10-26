@@ -118,4 +118,8 @@ SAS Test User 2: sastest2 <br />
 Password: lnxsas <br /> 
 SAS <br /> 
 
+# LDAP Information
+
+![image](https://user-images.githubusercontent.com/115498782/198134563-0bf8fb48-f496-4d3f-a2fc-f829bbfccc15.png)
+
 
