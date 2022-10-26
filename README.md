@@ -98,6 +98,9 @@ time kubectl -n viya wait \
 
 echo https://$ingress_alias
 
+![image](https://user-images.githubusercontent.com/115498782/198131967-5c48b7a3-beb8-442e-8067-ae5ab01c1640.png)
+
+
 ### Use the login information:
 
 SAS Administrator: sasadm
