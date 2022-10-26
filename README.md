@@ -103,18 +103,19 @@ echo https://$ingress_alias
 
 ### Use the login information:
 
-SAS Administrator: sasadm
-Password: lnxsas
+SAS Administrator: sasadm <br /> 
+Password: lnxsas <br /> 
 
-SAS Demo User: 
-Password: lnxsas
+SAS Demo User: sasdemo <br /> 
+Password: lnxsas <br /> 
 
 ### Alternative users:
 
-SAS Test User 1: sastest1
-Password: lnxsas
+SAS Test User 1: sastest1 <br /> 
+Password: lnxsas <br /> 
 
-SAS Test User 2: sastest2
-Password: lnxsas
-SAS
+SAS Test User 2: sastest2 <br /> 
+Password: lnxsas <br /> 
+SAS <br /> 
+
 
