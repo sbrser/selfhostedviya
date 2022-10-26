@@ -81,3 +81,34 @@ export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wi
 
 chmod +x selfhostedviya/installViya.sh <br />
 source selfhostedviya/installViya.sh
+
+## Execute the command below to wait to the environment to get ready:
+
+time kubectl -n viya wait \
+     --for=condition=ready \
+     pod \
+     --selector='app.kubernetes.io/name=sas-readiness' \
+      --timeout=2700s
+      
+## When the time command return the environment is ready to use
+
+### Get the URL with the command:
+
+echo https://$ingress_alias
+
+### Use the login information:
+
+SAS Administrator: sasadm
+Password: lnxsas
+
+SAS Demo User: 
+Password: lnxsas
+
+### Alternative users:
+
+SAS Test User 1: sastest1
+Password: lnxsas
+
+SAS Test User 2: sastest2
+Password: lnxsas
+SAS
