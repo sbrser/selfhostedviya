@@ -134,7 +134,7 @@ Password: lnxsas <br />
 
 - Use caslib command: 
 
-cas mySession; <br /> 
-caslib myCaslib datasource=(srctype="path") path="/data/" sessref=mySession subdirs; <br /> 
-libname myCaslib cas; <br /> 
-caslib _all_ assign; <br /> 
+  cas mySession; <br /> 
+  caslib myCaslib datasource=(srctype="path") path="/data" sessref=mySession subdirs; <br /> 
+  libname myCaslib cas; <br /> 
+  caslib _all_ assign; <br /> 
