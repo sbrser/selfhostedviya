@@ -59,6 +59,8 @@ source selfhostedviya/prepareKubernetesResources.sh
 
 kubectl get pods --all-namespaces
 
+![image](https://user-images.githubusercontent.com/115498782/198282950-2a44cb44-2477-4ce3-a65d-89d1cae099f4.png)
+
 ## Execute the script to prepare OpenLDAP
 
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
