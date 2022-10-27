@@ -123,16 +123,17 @@ Password: lnxsas <br />
 
 # Data Information
 
-## Data path for files, libnames and caslibs
+## Path /data was create at CAS and Compute pods, you can use it to copy files; create libnames and caslibs
 
-- Use /data path to copy files to the environment using the SAS Server --> Files navigation path:
-![image](https://user-images.githubusercontent.com/115498782/198365937-e24ed7e4-4700-4b02-a996-1dc88c6578e8.png)
+- Upload files using the SAS Server file navigation at SAS Studio.
 
-- Use libname command:
+![image](https://user-images.githubusercontent.com/115498782/198370464-de702033-3c0e-4851-a9f9-3aeea09b96cd.png)
+
+- Libname command example:
 
   libname myLib "/data";
 
-- Use caslib command: 
+- Caslib command example: 
 
   cas mySession; <br /> 
   caslib myCaslib datasource=(srctype="path") path="/data" sessref=mySession subdirs; <br /> 
