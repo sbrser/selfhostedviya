@@ -112,6 +112,7 @@ kubectl create -f custom-resources.yaml
 
 # Configure NFS
 sudo mkdir -p /export/viya-share/pvs
+sudo mkdir -p /export/viya-share/data
 sudo chmod -R 777 /export/viya-share
 
 sudo systemctl enable rpcbind
