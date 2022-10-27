@@ -114,6 +114,84 @@ config:
             password: lnxsas
 EOF
 
+# Configure mount point for data CAS and SPRE
+tee  ~/viya4-orders-cli/sasfiles/site-config/data-mounts-cas.yaml > /dev/null << "EOF"
+# PatchTransformer
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: data-mounts-cas
+patch: |-
+  ## NFS path example - kubernetes will mount these for you
+  - op: add
+    path: /spec/controllerTemplate/spec/containers/0/volumeMounts/-
+    value:
+      name: db-client-access
+      mountPath: "/data"
+  - op: add
+    path: /spec/controllerTemplate/spec/volumes/-
+    value:
+     name: db-client-access
+     nfs:
+       path: /export/viya-share/data
+       server: localhost
+target:
+  kind: CASDeployment
+  annotationSelector: sas.com/sas-access-config=true
+EOF
+
+tee  ~/viya4-orders-cli/sasfiles/site-config/data-mounts-job.yaml > /dev/null << "EOF"
+# General example for adding mounts to SAS containers with a
+# PatchTransformer
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: data-mounts-job
+patch: |-
+  ## NFS path example - kubernetes will mount these for you
+  - op: add
+    path: /template/spec/containers/0/volumeMounts/-
+    value:
+      name: db-client-access
+      mountPath: "/data"
+  - op: add
+    path: /template/spec/volumes/-
+    value:
+     name: db-client-access
+     nfs:
+       path: /export/viya-share/data
+       server: localhost
+target:
+  kind: PodTemplate
+  annotationSelector: sas.com/sas-access-config=true
+EOF
+
+tee  ~/viya4-orders-cli/sasfiles/site-config/data-mounts-deployment.yaml > /dev/null << "EOF"
+# General example for adding mounts to SAS containers with a
+# PatchTransformer
+apiVersion: builtin
+kind: PatchTransformer
+metadata:
+  name: data-mounts-deployment
+patch: |-
+  ## NFS path example - kubernetes will mount these for you
+  - op: add
+    path: /spec/template/spec/containers/0/volumeMounts/-
+    value:
+      name: db-client-access
+      mountPath: "/data"
+  - op: add
+    path: /spec/template/spec/volumes/-
+    value:
+     name: db-client-access
+     nfs:
+       path: /export/viya-share/data
+       server: localhost
+target:
+  kind: Deployment
+  annotationSelector: sas.com/sas-access-config=true
+EOF
+
 
 # Create kustomization.yaml file
 cat > ~/viya4-orders-cli/sasfiles/kustomization.yaml <<-EOF
@@ -142,6 +220,9 @@ transformers:
 - sas-bases/overlays/internal-elasticsearch/internal-elasticsearch-transformer.yaml
 # Mount information
 # - site-config/{{ DIRECTORY-PATH }}/cas-add-host-mount.yaml
+- site-config/data-mounts-cas.yaml
+- site-config/data-mounts-deployment.yaml
+- site-config/data-mounts-job.yaml
 components:
 - sas-bases/components/crunchydata/internal-platform-postgres 
 - sas-bases/components/security/core/base/full-stack-tls 
