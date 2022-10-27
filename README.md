@@ -70,6 +70,8 @@ source selfhostedviya/prepareOpenLDAP.sh
 
 kubectl get pods -n kubectl -n ldap-basic
 
+![image](https://user-images.githubusercontent.com/115498782/198283198-2c3741f6-4acf-4284-8e37-1981de9e6b9a.png)
+
 ## Execute the script to Install Viya
 
 - Define the Environment Variables below replacing with the correct values
