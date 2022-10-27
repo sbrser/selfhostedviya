@@ -88,10 +88,10 @@ source selfhostedviya/installViya.sh
 
 ## Execute the command below to wait to the environment to get ready:
 
-time kubectl -n viya wait \
-     --for=condition=ready \
-     pod \
-     --selector='app.kubernetes.io/name=sas-readiness' \
+time kubectl -n viya wait \\
+     --for=condition=ready \\
+     pod \\
+     --selector='app.kubernetes.io/name=sas-readiness' \\
       --timeout=2700s
     
 ## When the time command return the environment is ready to use
