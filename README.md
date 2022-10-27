@@ -121,4 +121,18 @@ Password: lnxsas <br />
 
 ![image](https://user-images.githubusercontent.com/115498782/198134563-0bf8fb48-f496-4d3f-a2fc-f829bbfccc15.png)
 
+# Data Information
 
+## Data path for files, libnames and caslibs
+
+- Use /data path to copy files to the environment using the SAS Server --> Files navigation path:
+![image](https://user-images.githubusercontent.com/115498782/198365937-e24ed7e4-4700-4b02-a996-1dc88c6578e8.png)
+
+- Use libname command:<br />  
+  libname myLib "/data";
+
+- Use caslib command: <br /> 
+cas mySession;
+caslib myCaslib datasource=(srctype="path") path="/data/" sessref=mySession subdirs;
+libname myCaslib cas;
+caslib _all_ assign;
