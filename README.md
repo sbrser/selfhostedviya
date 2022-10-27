@@ -120,7 +120,6 @@ Password: lnxsas <br />
 
 SAS Test User 2: sastest2 <br /> 
 Password: lnxsas <br /> 
-SAS <br /> 
 
 # LDAP Information
 
