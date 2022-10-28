@@ -142,5 +142,5 @@ Password: lnxsas <br />
 
 # Acknowledgments
 
-Henrique Danc (SAS Sr Solutions Architect)
+Henrique Danc (SAS Sr Solutions Architect) 
 
