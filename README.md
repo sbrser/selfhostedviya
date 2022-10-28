@@ -121,6 +121,21 @@ Password: lnxsas <br />
 SAS Test User 2: sastest2 <br /> 
 Password: lnxsas <br /> 
 
+# Saving some Money $$$
+
+## STOP the environment
+
+- Simple stop de Azure Virtual Machine
+
+![image](https://user-images.githubusercontent.com/115498782/198690314-1cb23cbf-c556-4bb0-a752-4fa8c6bc726d.png)
+
+
+## START the environment
+
+- Simple start de Azure Virtual Machine
+
+![image](https://user-images.githubusercontent.com/115498782/198690610-49cae4f2-b11a-4501-894e-8d6e58c13e61.png)
+
 # LDAP Information
 
 ![image](https://user-images.githubusercontent.com/115498782/198134563-0bf8fb48-f496-4d3f-a2fc-f829bbfccc15.png)
