@@ -121,7 +121,7 @@ Password: lnxsas <br />
 SAS Test User 2: sastest2 <br /> 
 Password: lnxsas <br /> 
 
-# Saving some Money $$$
+# Start and Stop
 
 ## STOP the environment
 
