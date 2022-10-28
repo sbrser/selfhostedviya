@@ -136,6 +136,26 @@ Password: lnxsas <br />
 
 ![image](https://user-images.githubusercontent.com/115498782/198690610-49cae4f2-b11a-4501-894e-8d6e58c13e61.png)
 
+# Monitoring and Logging
+
+You can monitor and check the logs using this two methods:
+
+## With Kubectl commands in the Azure Virtual Machine created. <br /> 
+
+- SSH to the Azure Virtual Machine
+
+export az_project=projectname              # Replace with the name of the project you want. <br />
+vmIP=\`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'\`
+ssh -i .ssh/id_rsa -l azureuser ${vmIP}
+
+## With Lens (https://k8slens.dev/) <br /> 
+
+- To use with Lens, copy the content of the kube config file in the folder ~/.kube (Azure Virtual Machine)
+- Replace the "server:" parameter from the local IP 192.168.0.4 to your $ingress-alias value
+- Add the full content at the Add Cluster in Lens application.
+
+![image](https://user-images.githubusercontent.com/115498782/198711131-eeeab123-499e-4f20-a569-9cf2f8eacb10.png)
+
 # LDAP Information
 
 ![image](https://user-images.githubusercontent.com/115498782/198134563-0bf8fb48-f496-4d3f-a2fc-f829bbfccc15.png)
