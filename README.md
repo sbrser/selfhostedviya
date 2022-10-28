@@ -151,7 +151,7 @@ You can monitor and check the logs using this two methods:
 - Replace the "server:" parameter from the local IP 192.168.0.4 to your $ingress-alias value
 - Add the full content at the Add Cluster in Lens application
 
-![image](https://user-images.githubusercontent.com/115498782/198711131-eeeab123-499e-4f20-a569-9cf2f8eacb10.png)
+![image](https://user-images.githubusercontent.com/115498782/198714032-655a7f21-cbf9-4a41-85b4-d75f4b83ca89.png)
 
 # LDAP Information
 
