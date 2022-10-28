@@ -67,11 +67,10 @@ config:
         sas.logon.initial:
             user: sasboot
             password: lnxsas
-    SASStudio:
         sas.studio:
-            showServerFiles: true
-            fileNavigationRoot: CUSTOM
-            fileNavigationCustomRootPath: /data
+            showServerFiles: 'true'
+            fileNavigationRoot: 'CUSTOM'
+            fileNavigationCustomRootPath: '/data'
 EOF
 
 
