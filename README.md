@@ -11,7 +11,7 @@ This project allow you to install Viya in a single Virtual Machine at Microsoft 
 
 # Azure Infrastructure Created
 
-![SelfHostedViya-Page-2](https://user-images.githubusercontent.com/115498782/198651683-a8ef3876-4de8-4328-bbe1-da092b4ab5c8.png)
+![SelfHostedViya-Page-2 (1)](https://user-images.githubusercontent.com/115498782/198652428-d845f5fd-8487-4a2c-9281-d8a162df012d.png)
 
 # Steps
 
