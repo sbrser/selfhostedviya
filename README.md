@@ -37,7 +37,7 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 chmod +x selfhostedviya/prepareAzureResources.sh <br />
 source selfhostedviya/prepareAzureResources.sh
 
-## SSH to the Virtual Machine created
+## SSH to connect the Azure Virtual Machine created
 
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 
