@@ -143,16 +143,13 @@ You can monitor and check the logs using this two methods:
 ## With Kubectl commands in the Azure Virtual Machine created. <br /> 
 
 - SSH to the Azure Virtual Machine
-
-export az_project=projectname              # Replace with the name of the project you want. <br />
-vmIP=\`az vm list-ip-addresses -g $\{az_project\}-rg -n $\{az_project\}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'\` <br />
-ssh -i .ssh/id_rsa -l azureuser ${vmIP} <br />
+- Execute the kubectl command
 
 ## With Lens (https://k8slens.dev/) <br /> 
 
 - To use with Lens, copy the content of the kube config file in the folder ~/.kube (Azure Virtual Machine)
 - Replace the "server:" parameter from the local IP 192.168.0.4 to your $ingress-alias value
-- Add the full content at the Add Cluster in Lens application.
+- Add the full content at the Add Cluster in Lens application
 
 ![image](https://user-images.githubusercontent.com/115498782/198711131-eeeab123-499e-4f20-a569-9cf2f8eacb10.png)
 
