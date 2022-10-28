@@ -9,6 +9,10 @@ This project allow you to install Viya in a single Virtual Machine at Microsoft 
 - SASAPIKey and SASAPISecret (SAS Viya Orders API - https://apiportal.sas.com/get-started)
 - SAS Viya Order
 
+# Azure Infrastructure Created
+
+![SelfHostedViya-Page-2](https://user-images.githubusercontent.com/115498782/198651683-a8ef3876-4de8-4328-bbe1-da092b4ab5c8.png)
+
 # Steps
 
 ## Open the cloud Shell at the Azure Portal 
