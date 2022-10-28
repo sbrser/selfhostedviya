@@ -139,3 +139,8 @@ Password: lnxsas <br />
   caslib myCaslib datasource=(srctype="path") path="/data" sessref=mySession subdirs; <br /> 
   libname myCaslib cas; <br /> 
   caslib _all_ assign; <br /> 
+
+# Acknowledgments
+
+Henrique Danc (SAS Sr Solutions Architect)
+
