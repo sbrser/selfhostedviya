@@ -81,6 +81,11 @@ networking:
   podSubnet: "192.168.0.0/16"
   serviceSubnet: "192.169.0.0/16"
   dnsDomain: "cluster.local"
+apiServer:
+ certSANs:
+ - "192.168.0.1"
+ - "192.168.0.4"
+ - "$ingress_alias"
 ---
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
