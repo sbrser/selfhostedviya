@@ -145,8 +145,8 @@ You can monitor and check the logs using this two methods:
 - SSH to the Azure Virtual Machine
 
 export az_project=projectname              # Replace with the name of the project you want. <br />
-vmIP=\*`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'`\*
-ssh -i .ssh/id_rsa -l azureuser ${vmIP}
+vmIP=\*literal backtick\*az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'\*literal backtick\* <br />
+ssh -i .ssh/id_rsa -l azureuser ${vmIP} <br />
 
 ## With Lens (https://k8slens.dev/) <br /> 
 
