@@ -90,7 +90,7 @@ export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wi
 chmod +x selfhostedviya/installViya.sh <br />
 source selfhostedviya/installViya.sh
 
-## Execute the command below to wait to the environment to get ready:
+## Execute the command below and wait till the environment get condition ready:
 
 time kubectl -n viya wait --for=condition=ready pod --selector='app.kubernetes.io/name=sas-readiness' --timeout=2700s
     
