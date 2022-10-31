@@ -70,7 +70,7 @@ kubectl get pods --all-namespaces
 chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
 source selfhostedviya/prepareOpenLDAP.sh
 
-- Verify if ldap is running:
+- Verify and wait till LDAP pod is in Status Running and Ready 1/1:
 
 kubectl get pods -n kubectl -n ldap-basic
 
