@@ -59,7 +59,7 @@ git clone https://github.com/sbrser/selfhostedviya.git <br />
 chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
 source selfhostedviya/prepareKubernetesResources.sh
 
-- Verify if everything is running:
+- Verify and wait till all pods are in Running/Ready Status:
 
 kubectl get pods --all-namespaces
 
