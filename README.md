@@ -23,7 +23,7 @@ https://portal.azure.com/
 ![image](https://user-images.githubusercontent.com/115498782/195679636-5a242d10-14a5-4326-b387-86eaa4a4f370.png)
 
 ## Define environment variables
-
+``` BASH
 cloudshellIP=\`curl -s checkip.dyndns.org | sed -e 's/.\*Current IP Address: //' -e 's/<.*$//'\` <br /> 
 export az_subscription=subscription        # Replace with the subscription you want to create the resources.  <br /> 
 export az_region=region                    # Replace with the azure region you want to create the resources. <br />
@@ -31,7 +31,7 @@ export az_project=projectname              # Replace with the name of the projec
 export az_public_access_cidrs="x.x.x.x/yy $cloudshellIP" # Replace with the public IP CIDR that will be used to access Viya.  <br />
 export az_vm_size=Standard_E32s_v5        # Standard_E32s_v5 is the suggestion for this project. <br />
 export az_vm_disk_size_gb=300              # OS disk size 300GB is the suggestion for this project. <br />
-
+```
 
 ## Clone this repository into the Azure Cloud Shell
 ```
@@ -172,10 +172,10 @@ You can monitor and check the logs using this two methods:
 ```
 - Caslib command example: 
 ``` SAS
-  cas mySession; <br /> 
-  caslib myCaslib datasource=(srctype="path") path="/data" sessref=mySession subdirs; <br /> 
-  libname myCaslib cas; <br /> 
-  caslib _all_ assign; <br /> 
+  cas mySession; 
+  caslib myCaslib datasource=(srctype="path") path="/data" sessref=mySession subdirs; 
+  libname myCaslib cas;  
+  caslib _all_ assign; 
 ```
 # Acknowledgments
 
