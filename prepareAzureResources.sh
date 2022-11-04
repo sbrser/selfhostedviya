@@ -148,5 +148,3 @@ az network nic ip-config address-pool add \
     --nic-name ${az_project}-vmVMNic \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb
-
-export vmIP=`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'`
