@@ -35,46 +35,46 @@ export az_vm_disk_size_gb=300              # OS disk size 300GB is the suggestio
 
 ## Clone this repository into the Azure Cloud Shell
 ```
-git clone https://github.com/sbrser/selfhostedviya.git <br />
+git clone https://github.com/sbrser/selfhostedviya.git
 ```
 ## Execute the script to prepare the Azure Resources
-
-chmod +x selfhostedviya/prepareAzureResources.sh <br />
+```
+chmod +x selfhostedviya/prepareAzureResources.sh
 source selfhostedviya/prepareAzureResources.sh
-
+```
 ## SSH to connect the Azure Virtual Machine created
-
+```
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
-
+```
 - Enter yes when this message appear: <br />
 ![image](https://user-images.githubusercontent.com/115498782/195848242-e0cb5e04-928f-48e5-8002-84fafe5f20a7.png)
 
  
 ## Clone this repository into the Azure Virtual Machine
-
-sudo yum install -y git # Install git in the VM <br />
-git clone https://github.com/sbrser/selfhostedviya.git <br />
-
+```
+sudo yum install -y git # Install git in the VM 
+git clone https://github.com/sbrser/selfhostedviya.git
+```
 ## Execute the script to prepare the Kubernetes Resources
-
-chmod +x selfhostedviya/prepareKubernetesResources.sh <br />
+```
+chmod +x selfhostedviya/prepareKubernetesResources.sh
 source selfhostedviya/prepareKubernetesResources.sh
-
+```
 - Verify and wait till all pods are in Status Running or Completed and Ready 1/1 or 2/2:
-
+```
 kubectl get pods --all-namespaces
-
+```
 ![image](https://user-images.githubusercontent.com/115498782/198282950-2a44cb44-2477-4ce3-a65d-89d1cae099f4.png)
 
 ## Execute the script to prepare OpenLDAP
-
-chmod +x selfhostedviya/prepareOpenLDAP.sh <br />
+```
+chmod +x selfhostedviya/prepareOpenLDAP.sh
 source selfhostedviya/prepareOpenLDAP.sh
-
+```
 - Verify and wait till LDAP pod is in Status Running and Ready 1/1:
-
+```
 kubectl get pods -n kubectl -n ldap-basic
-
+```
 ![image](https://user-images.githubusercontent.com/115498782/198283198-2c3741f6-4acf-4284-8e37-1981de9e6b9a.png)
 
 ## Execute the script to Install Viya
@@ -87,22 +87,22 @@ kubectl get pods -n kubectl -n ldap-basic
 export SASAPIKey=key                 # Replace with the API Key from your created application at https://apiportal.sas.com.  <br /> 
 export SASAPISecret=secret           # Replace with the API Sectret from your created application at https://apiportal.sas.com.  <br /> 
 export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. <br /> 
-
+```
 chmod +x selfhostedviya/installViya.sh <br />
 source selfhostedviya/installViya.sh
-
+```
 ## Execute the command below and wait till the environment get condition ready:
-
+```
 time kubectl -n viya wait --for=condition=ready pod --selector='app.kubernetes.io/name=sas-readiness' --timeout=2700s
-    
+```  
 ## When the time command return the environment is ready to use
 
 ![image](https://user-images.githubusercontent.com/115498782/198111084-10e83014-e81a-418e-98e6-069467df93be.png)
 
 ### Get the URL with the command:
-
+```
 echo https://$ingress_alias
-
+```
 ![image](https://user-images.githubusercontent.com/115498782/198131967-5c48b7a3-beb8-442e-8067-ae5ab01c1640.png)
 
 
@@ -167,16 +167,16 @@ You can monitor and check the logs using this two methods:
 ![image](https://user-images.githubusercontent.com/115498782/198370464-de702033-3c0e-4851-a9f9-3aeea09b96cd.png)
 
 - Libname command example:
-
+``` SAS
   libname myLib "/data";
-
+```
 - Caslib command example: 
-
+``` SAS
   cas mySession; <br /> 
   caslib myCaslib datasource=(srctype="path") path="/data" sessref=mySession subdirs; <br /> 
   libname myCaslib cas; <br /> 
   caslib _all_ assign; <br /> 
-
+```
 # Acknowledgments
 
 Henrique Danc (SAS Sr Solutions Architect) 
