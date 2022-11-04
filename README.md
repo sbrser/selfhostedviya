@@ -147,6 +147,7 @@ You can monitor and check the logs using this two methods:
 
 - SSH to the Azure Virtual Machine
 ``` BASH
+export az_project=projectname              # Replace with the name of the project you want. 
 export vmIP=`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'`
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 ```
