@@ -39,8 +39,8 @@ git clone https://github.com/sbrser/selfhostedviya.git
 ```
 ## Execute the script to prepare the Azure Resources
 ``` BASH
-chmod +x selfhostedviya/prepareAzureResources.sh
-source selfhostedviya/prepareAzureResources.sh
+chmod +x selfhostedviya/scripts/prepareAzureResources.sh
+source selfhostedviya/scripts/prepareAzureResources.sh
 ```
 ## SSH to connect the Azure Virtual Machine created
 ``` BASH
@@ -58,8 +58,8 @@ git clone https://github.com/sbrser/selfhostedviya.git
 ```
 ## Execute the script to prepare the Kubernetes Resources
 ``` BASH
-chmod +x selfhostedviya/prepareKubernetesResources.sh
-source selfhostedviya/prepareKubernetesResources.sh
+chmod +x selfhostedviya/scripts/prepareKubernetesResources.sh
+source selfhostedviya/scripts/prepareKubernetesResources.sh
 ```
 - Verify and wait till all pods are in Status Running or Completed and Ready 1/1 or 2/2:
 ``` BASH
@@ -69,8 +69,8 @@ kubectl get pods --all-namespaces
 
 ## Execute the script to prepare OpenLDAP
 ``` BASH
-chmod +x selfhostedviya/prepareOpenLDAP.sh
-source selfhostedviya/prepareOpenLDAP.sh
+chmod +x selfhostedviya/scripts/prepareOpenLDAP.sh
+source selfhostedviya/scripts/prepareOpenLDAP.sh
 ```
 - Verify and wait till LDAP pod is in Status Running and Ready 1/1:
 ``` BASH
@@ -90,8 +90,8 @@ export SASAPISecret=secret           # Replace with the API Sectret from your cr
 export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. 
 ```
 ``` BASH
-chmod +x selfhostedviya/installViya.sh <br />
-source selfhostedviya/installViya.sh
+chmod +x selfhostedviya/scripts/installViya.sh <br />
+source selfhostedviya/scripts/installViya.sh
 ```
 ## Execute the command below and wait till the environment get condition ready:
 ``` BASH
