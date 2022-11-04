@@ -3,7 +3,7 @@
 # Configure OpenLDAP
 
 # Unpack files
-tar -xf selfhostedviya/ldap-basic.tar
+tar -xf selfhostedviya/ldap/ldap-basic.tar
 
 # Create Namespace
 kubectl create ns ldap-basic
