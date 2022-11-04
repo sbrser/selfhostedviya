@@ -34,9 +34,9 @@ export az_vm_disk_size_gb=300              # OS disk size 300GB is the suggestio
 
 
 ## Clone this repository into the Azure Cloud Shell
-
+```
 git clone https://github.com/sbrser/selfhostedviya.git <br />
-
+```
 ## Execute the script to prepare the Azure Resources
 
 chmod +x selfhostedviya/prepareAzureResources.sh <br />
