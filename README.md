@@ -44,6 +44,7 @@ source selfhostedviya/prepareAzureResources.sh
 ```
 ## SSH to connect the Azure Virtual Machine created
 ``` BASH
+export vmIP=`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'`
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 ```
 - Enter yes when this message appear: <br />
@@ -145,7 +146,14 @@ You can monitor and check the logs using this two methods:
 ## With Kubectl commands in the Azure Virtual Machine created. <br /> 
 
 - SSH to the Azure Virtual Machine
+``` BASH
+export vmIP=`az vm list-ip-addresses -g ${az_project}-rg -n ${az_project}-vm | grep ipAddress | cut -d ":" -f 2 | sed 's/"//' | sed 's/",//'`
+ssh -i .ssh/id_rsa -l azureuser ${vmIP}
+```
 - Execute the kubectl command
+``` BASH
+kubectl -n viya get pods
+```
 
 ## With Lens (https://k8slens.dev/) <br /> 
 
