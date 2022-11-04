@@ -24,7 +24,7 @@ https://portal.azure.com/
 
 ## Define environment variables
 ``` BASH
-cloudshellIP=\`curl -s checkip.dyndns.org | sed -e 's/.\*Current IP Address: //' -e 's/<.*$//'\` 
+cloudshellIP=`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
 export az_subscription=subscription        # Replace with the subscription you want to create the resources.  
 export az_region=region                    # Replace with the azure region you want to create the resources. 
 export az_project=projectname              # Replace with the name of the project you want. 
@@ -34,16 +34,16 @@ export az_vm_disk_size_gb=300              # OS disk size 300GB is the suggestio
 ```
 
 ## Clone this repository into the Azure Cloud Shell
-```
+``` BASH
 git clone https://github.com/sbrser/selfhostedviya.git
 ```
 ## Execute the script to prepare the Azure Resources
-```
+``` BASH
 chmod +x selfhostedviya/prepareAzureResources.sh
 source selfhostedviya/prepareAzureResources.sh
 ```
 ## SSH to connect the Azure Virtual Machine created
-```
+``` BASH
 ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 ```
 - Enter yes when this message appear: <br />
@@ -51,28 +51,28 @@ ssh -i .ssh/id_rsa -l azureuser ${vmIP}
 
  
 ## Clone this repository into the Azure Virtual Machine
-```
+``` BASH
 sudo yum install -y git # Install git in the VM 
 git clone https://github.com/sbrser/selfhostedviya.git
 ```
 ## Execute the script to prepare the Kubernetes Resources
-```
+``` BASH
 chmod +x selfhostedviya/prepareKubernetesResources.sh
 source selfhostedviya/prepareKubernetesResources.sh
 ```
 - Verify and wait till all pods are in Status Running or Completed and Ready 1/1 or 2/2:
-```
+``` BASH
 kubectl get pods --all-namespaces
 ```
 ![image](https://user-images.githubusercontent.com/115498782/198282950-2a44cb44-2477-4ce3-a65d-89d1cae099f4.png)
 
 ## Execute the script to prepare OpenLDAP
-```
+``` BASH
 chmod +x selfhostedviya/prepareOpenLDAP.sh
 source selfhostedviya/prepareOpenLDAP.sh
 ```
 - Verify and wait till LDAP pod is in Status Running and Ready 1/1:
-```
+``` BASH
 kubectl get pods -n kubectl -n ldap-basic
 ```
 ![image](https://user-images.githubusercontent.com/115498782/198283198-2c3741f6-4acf-4284-8e37-1981de9e6b9a.png)
@@ -83,16 +83,17 @@ kubectl get pods -n kubectl -n ldap-basic
 - SASAPIKey and SASAPISecret must be created at SAS Viya Orders API, instructions at https://apiportal.sas.com/get-started
 
 ![image](https://user-images.githubusercontent.com/115498782/196185492-58e5332f-112f-4583-a07c-8683a400c21c.png)
-
-export SASAPIKey=key                 # Replace with the API Key from your created application at https://apiportal.sas.com.  <br /> 
-export SASAPISecret=secret           # Replace with the API Sectret from your created application at https://apiportal.sas.com.  <br /> 
-export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. <br /> 
+``` BASH
+export SASAPIKey=key                 # Replace with the API Key from your created application at https://apiportal.sas.com.  
+export SASAPISecret=secret           # Replace with the API Sectret from your created application at https://apiportal.sas.com.  
+export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. 
 ```
+``` BASH
 chmod +x selfhostedviya/installViya.sh <br />
 source selfhostedviya/installViya.sh
 ```
 ## Execute the command below and wait till the environment get condition ready:
-```
+``` BASH
 time kubectl -n viya wait --for=condition=ready pod --selector='app.kubernetes.io/name=sas-readiness' --timeout=2700s
 ```  
 ## When the time command return the environment is ready to use
