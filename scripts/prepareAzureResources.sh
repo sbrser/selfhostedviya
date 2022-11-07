@@ -41,7 +41,7 @@ az network nsg rule create \
 	--source-address-prefixes ${az_public_access_cidrs} \
     --protocol tcp \
     --priority 1001 \
-    --destination-port-range 30080 30443 443 80 \
+    --destination-port-range 30080 30443 6443 443 80 \
     --access allow
 
 
