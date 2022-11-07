@@ -90,7 +90,7 @@ export SASAPISecret=secret           # Replace with the API Sectret from your cr
 export VIYA_ORDER=order_number       # Replace with the Viya Order Number you wish to install located at https://my.sas.com/en/home.html. 
 ```
 ``` BASH
-chmod +x selfhostedviya/scripts/installViya.sh <br />
+chmod +x selfhostedviya/scripts/installViya.sh
 source selfhostedviya/scripts/installViya.sh
 ```
 ## Execute the command below and wait till the environment get condition ready:
