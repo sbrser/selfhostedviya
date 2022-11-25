@@ -26,13 +26,6 @@ tar -zxf ${VIYA_ORDER}_depassets.tgz
 mkdir -p site-config/security
 cp sas-bases/examples/security/openssl-generated-ingress-certificate.yaml site-config/security
 
-# Copy the postgres config
-
-mkdir -p site-config/postgres
-cp -R sas-bases/examples/configure-postgres/internal/pgo-client site-config/postgres/
-sed 's/{{ REPLICAS-COUNT }}/0/' sas-bases/examples/postgres/replicas/postgres-replicas-transformer.yaml > site-config/postgres/postgres-replicas-transformer.yaml
-
-
 # Create the storageclass.yaml file
 
 cat > ~/viya4-orders-cli/sasfiles/site-config/storageclass.yaml <<-EOF
@@ -81,16 +74,6 @@ dns_prefix=`hostname | sed 's/-vm//'`
 export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
 echo Ingress Alias: $ingress_alias
-
-# Create kustomization.yaml file
-cat > ~/viya4-orders-cli/sasfiles/site-config/storageclass.yaml <<-EOF
-kind: RWXStorageClass
-metadata:
- name: wildcard
-spec:
- storageClassName: sas
-EOF
-
 
 # Create sitedefault.yaml file
 
