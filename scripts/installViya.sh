@@ -75,32 +75,6 @@ export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
 echo Ingress Alias: $ingress_alias
 
-# Create sitedefault.yaml file
-
-tee  ~/viya4-orders-cli/sasfiles/site-config/sitedefault.yaml > /dev/null << "EOF"
-config:
-    application:
-        sas.identities.providers.ldap.connection:
-            host: openldap-service.ldap-basic.svc.cluster.local
-            password: lnxsas
-            port: 389
-            userDN: cn=admin,dc=acme,dc=com
-            url: ldap://${sas.identities.providers.ldap.connection.host}:${sas.identities.providers.ldap.connection.port}
-        sas.identities.providers.ldap.group:
-            accountId: 'cn'
-            baseDN: 'dc=acme,dc=com'
-            objectFilter: '(objectClass=groupOfUniqueNames)'
-        sas.identities.providers.ldap.user:
-            accountId: 'cn'
-            baseDN: 'dc=acme,dc=com'
-            objectFilter: '(objectClass=person)'
-        sas.identities:
-            administrator: 'sasadm'
-        sas.logon.initial:
-            user: sasboot
-            password: lnxsas
-EOF
-
 # Configure mount point for data CAS and SPRE
 tee  ~/viya4-orders-cli/sasfiles/site-config/data-mounts-cas.yaml > /dev/null << "EOF"
 # PatchTransformer
