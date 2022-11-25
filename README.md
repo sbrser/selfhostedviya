@@ -25,8 +25,8 @@ https://portal.azure.com/
 ## Define environment variables
 ``` BASH
 cloudshellIP=`curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'`
-export az_subscription=subscription        # Replace with the subscription you want to create the resources.  
-export az_region=region                    # Replace with the azure region you want to create the resources. 
+export az_subscription=subscription        # Replace with the subscription name you want to create the resources.  
+export az_region=region                    # Replace with the azure region you want to create the resources (Ex.: eastus, westus2...) 
 export az_project=projectname              # Replace with the name of the project you want. 
 export az_public_access_cidrs="x.x.x.x/yy $cloudshellIP" # Replace with the public IP CIDR that will be used to access Viya.  
 export az_vm_size=Standard_E32s_v5         # Standard_E32s_v5 is the suggestion for this project. 
@@ -190,4 +190,7 @@ kubectl -n viya get pods
 # Acknowledgments
 
 Henrique Danc (SAS Sr Solutions Architect) 
+Vitor Conde (Systems Engineer)
+Gustavo Peixinho (Sr Associate Systems Engineer)
+
 
