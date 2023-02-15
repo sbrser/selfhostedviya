@@ -111,8 +111,10 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # Install cluster networking CNI(Calico).
-kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
-curl https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml -O
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/tigera-operator.yaml
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/custom-resources.yaml -O
+#kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
+#curl https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml -O
 kubectl create -f custom-resources.yaml
 
 # Configure NFS
