@@ -76,7 +76,7 @@ sudo systemctl start kubelet
 cat <<EOF | tee kubeadm-config.yaml
 kind: ClusterConfiguration
 apiVersion: kubeadm.k8s.io/v1beta2
-kubernetesVersion: v1.23.1
+kubernetesVersion: v1.26.1
 networking:
   podSubnet: "192.168.0.0/16"
   serviceSubnet: "192.169.0.0/16"
