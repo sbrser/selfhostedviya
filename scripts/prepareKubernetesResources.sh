@@ -179,5 +179,3 @@ kubectl -n ingress-nginx apply -f ingress_nodeport.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.4.0/deploy/static/provider/baremetal/deploy.yaml
 
-# Configure Metric Server
-kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
