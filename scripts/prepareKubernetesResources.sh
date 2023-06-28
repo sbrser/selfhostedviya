@@ -9,8 +9,8 @@ export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 # Install packages
 sudo yum install -y yum-utils git wget nfs-utils cloud-utils-growpart gdisk
 
-wget https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz && \
-tar xvf helm-v3.7.0-linux-amd64.tar.gz
+wget https://get.helm.sh/helm-v3.13.0-linux-amd64.tar.gz && \
+tar xvf helm-v3.13.0-linux-amd64.tar.gz
 sudo mv linux-amd64/helm /usr/local/bin
 
 curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
@@ -67,7 +67,7 @@ EOF
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-sudo yum install -y kubelet-1.23.1 kubeadm-1.23.1 kubectl-1.23.1 --disableexcludes=kubernetes
+sudo yum install -y kubelet-1.26.1 kubeadm-1.26.1 kubectl-1.26.1 --disableexcludes=kubernetes
 sudo systemctl enable --now kubelet
 sudo systemctl start kubelet
 
@@ -90,7 +90,7 @@ apiServer:
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
 cgroupDriver: systemd
-maxPods: 200
+maxPods: 300
 podsPerCore: 0
 evictionHard:
   memory.available: "500Mi"
@@ -178,3 +178,6 @@ EOF
 kubectl -n ingress-nginx apply -f ingress_nodeport.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.4.0/deploy/static/provider/baremetal/deploy.yaml
+
+# Configure Metric Server
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
