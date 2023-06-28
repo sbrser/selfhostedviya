@@ -149,7 +149,7 @@ helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs
 	
 kubectl patch storageclass sas -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 NodeN=`kubectl get nodes | cut -d ' ' -f 1 | tail -1`
-kubectl taint node $NodeN node-role.kubernetes.io/master:NoSchedule-
+kubectl taint node $NodeN node-role.kubernetes.io/control-plane:NoSchedule-
 
 # Configure Ingress
 
