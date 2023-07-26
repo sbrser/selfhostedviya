@@ -102,6 +102,8 @@ evictionMinimumReclaim:
   imagefs.available: "500Mi"
 EOF
 
+sudo sed -i 's/"cri"/""/g' /etc/containerd/config.toml
+
 # deploy
 sudo kubeadm init --v=6 --config kubeadm-config.yaml 
 
