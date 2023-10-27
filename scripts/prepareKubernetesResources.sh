@@ -6,7 +6,7 @@ dns_prefix=`hostname | sed 's/-vm//'`
 export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
 # Install packages
-sudo yum install -y yum-utils git wget nfs-utils cloud-utils-growpart gdisk
+sudo yum install -y yum-utils git wget nfs-utils cloud-utils-growpart gdisk iproute-tc
 
 wget https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz && \
 tar xvf helm-v3.12.0-linux-amd64.tar.gz
