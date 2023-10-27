@@ -124,17 +124,13 @@ sudo mkdir -p /export/viya-share/pvs
 sudo mkdir -p /export/viya-share/data
 sudo chmod -R 777 /export/viya-share
 
-sudo systemctl enable rpcbind
-sudo systemctl enable nfs-server
-sudo systemctl enable nfs-lock
-sudo systemctl enable nfs-idmap
-sudo systemctl start rpcbind
-sudo systemctl start nfs-server
-sudo systemctl start nfs-lock
-sudo systemctl start nfs-idmap
+sudo dnf install nfs-utils
+
+sudo systemctl start nfs-server.service
+sudo systemctl enable nfs-server.service
 
 echo "/export/viya-share    *(rw,sync,no_root_squash,no_all_squash)" | sudo tee /etc/exports
-sudo systemctl restart nfs-server
+sudo systemctl restart nfs-server.service
 kubectl create namespace nfs-client
 
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
