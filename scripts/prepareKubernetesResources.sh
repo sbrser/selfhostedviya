@@ -6,7 +6,7 @@ dns_prefix=`hostname | sed 's/-vm//'`
 export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
 # Install packages
-sudo yum install -y yum-utils git wget nfs-utils cloud-utils-growpart gdisk iproute-tc
+sudo dnf install -y yum-utils git wget nfs-utils cloud-utils-growpart gdisk iproute-tc
 
 wget https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz && \
 tar xvf helm-v3.12.0-linux-amd64.tar.gz
@@ -42,15 +42,18 @@ EOF
 sudo sysctl --system
 
 # Installing container runtime
-sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-sudo sed -i "s/containerd.sock/containerd.sock --exec-opt native.cgroupdriver=systemd/g" /usr/lib/systemd/system/docker.service
-sudo chown $USER /var/run/docker.sock
-sudo systemctl daemon-reload
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm -y 
+sudo dnf install docker-ce --nobest -y
 sudo systemctl start docker
 sudo systemctl enable docker
+
+echo '{
+  "exec-opts": ["native.cgroupdriver=systemd"]
+}' | sudo tee -a /etc/docker/daemon.json
+
+sudo systemctl restart docker
+
 
 # Installing kubeadm, kubelet and kubectl
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
@@ -66,7 +69,7 @@ EOF
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-sudo yum install -y kubelet-1.26.1 kubeadm-1.26.1 kubectl-1.26.1 --disableexcludes=kubernetes
+sudo dnf install -y kubelet-1.27.1 kubeadm-1.27.1 kubectl-1.27.1 --disableexcludes=kubernetes
 sudo systemctl enable --now kubelet
 sudo systemctl start kubelet
 
@@ -99,9 +102,17 @@ evictionMinimumReclaim:
   memory.available: "0Mi"
   nodefs.available: "500Mi"
   imagefs.available: "500Mi"
+containerRuntimeEndpoint: "/run/containerd/containerd.sock"
 EOF
 
-sudo sed -i 's/"cri"/""/g' /etc/containerd/config.toml
+# Backup old containerd config
+sudo mv /etc/containerd/config.toml /etc/containerd/config.bak
+
+# Regenerate containerd config
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+
+# Restart containerd
+sudo systemctl restart containerd
 
 # deploy
 sudo kubeadm init --v=6 --config kubeadm-config.yaml 
