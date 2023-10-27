@@ -68,8 +68,7 @@ EOF
 
 
 # Define ingress_alias
-curl -H Metadata:true http://169.254.169.254/metadata/instance?api-version=2017-03-01| python -m json.tool > vminfo.txt
-vm_location=`cat vminfo.txt | grep location | cut -d ":" -f 2 | sed 's/ "//' | sed 's/",//'`
+vm_location=`curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance/compute/location?api-version=2017-08-01&format=text"`
 dns_prefix=`hostname | sed 's/-vm//'`
 export ingress_alias=${dns_prefix}.${vm_location}.cloudapp.azure.com
 
