@@ -54,7 +54,7 @@ az network vnet subnet update \
 # Criar VM
 
 az vm create -n ${az_project}-vm -g ${az_project}-rg \
---image CentOS \
+--image CentOS85Gen2 \
 --vnet-name ${az_project}-vnet --subnet ${az_project}-subnet \
 --admin-username azureuser \
 --generate-ssh-keys \
