@@ -176,6 +176,8 @@ transformers:
 - sas-bases/overlays/internal-elasticsearch/sysctl-transformer.yaml
 - sas-bases/overlays/required/transformers.yaml
 #- sas-bases/overlays/cas-server/auto-resources/remove-resources.yaml 
+# Disable WLM
+- sas-bases/examples/sas-workload-orchestrator/enable-disable/sas-workload-orchestrator-disable-patch-transformer.yaml
 # If your deployment contains SAS Data Science Programming, comment out the next line
 - sas-bases/overlays/internal-elasticsearch/internal-elasticsearch-transformer.yaml
 # Mount information
