@@ -42,21 +42,23 @@ EOF
 sudo sysctl --system
 
 # Installing container runtime
+
+sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 sudo yum install containerd
-
 sudo sed -i 's/^"cri"$/""/' /etc/containerd/config.toml
-# sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
 # sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm -y 
-# sudo dnf install docker-ce --nobest -y
-# sudo systemctl start docker
-# sudo systemctl enable docker
+sudo dnf install docker-ce --nobest -y
+sudo systemctl start docker
+sudo systemctl enable docker
 
-#echo '{
-#  "exec-opts": ["native.cgroupdriver=systemd"]
-#}' | sudo tee -a /etc/docker/daemon.json
+echo '{
+  "exec-opts": ["native.cgroupdriver=systemd"]
+}' | sudo tee -a /etc/docker/daemon.json
 
-#sudo systemctl restart docker
+sudo systemctl restart docker
 
+Restart containerd
+sudo systemctl restart containerd
 
 # Installing kubeadm, kubelet and kubectl
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
