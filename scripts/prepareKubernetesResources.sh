@@ -43,19 +43,20 @@ sudo sysctl --system
 
 # Installing container runtime
 
-sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum install containerd -y
+#sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+#sudo yum install containerd -y
+#sudo dnf install https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.6.28-3.1.el8.x86_64.rpm -y
+#sudo dnf install docker-ce --nobest -y
+
+sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 sudo sed -i 's/cri//g' /etc/containerd/config.toml
-# sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm -y 
-sudo dnf install docker-ce --nobest -y
+
 sudo systemctl start docker
 sudo systemctl enable docker
 
-echo '{
-  "exec-opts": ["native.cgroupdriver=systemd"]
-}' | sudo tee -a /etc/docker/daemon.json
-
-sudo systemctl restart docker
+#echo '{
+#  "exec-opts": ["native.cgroupdriver=systemd"]
+#}' | sudo tee -a /etc/docker/daemon.json
 
 Restart containerd
 sudo systemctl restart containerd
