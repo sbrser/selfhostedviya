@@ -42,17 +42,20 @@ EOF
 sudo sysctl --system
 
 # Installing container runtime
-sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
-sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm -y 
-sudo dnf install docker-ce --nobest -y
-sudo systemctl start docker
-sudo systemctl enable docker
+sudo yum install containerd
 
-echo '{
-  "exec-opts": ["native.cgroupdriver=systemd"]
-}' | sudo tee -a /etc/docker/daemon.json
+sudo sed -i 's/^"cri"$/""/' /etc/containerd/config.toml
+# sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+# sudo dnf install https://download.docker.com/linux/centos/7/x86_64/stable/Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm -y 
+# sudo dnf install docker-ce --nobest -y
+# sudo systemctl start docker
+# sudo systemctl enable docker
 
-sudo systemctl restart docker
+#echo '{
+#  "exec-opts": ["native.cgroupdriver=systemd"]
+#}' | sudo tee -a /etc/docker/daemon.json
+
+#sudo systemctl restart docker
 
 
 # Installing kubeadm, kubelet and kubectl
@@ -103,17 +106,16 @@ evictionMinimumReclaim:
   memory.available: "0Mi"
   nodefs.available: "500Mi"
   imagefs.available: "500Mi"
-containerRuntimeEndpoint: "/run/containerd/containerd.sock"
 EOF
 
 # Backup old containerd config
-sudo mv /etc/containerd/config.toml /etc/containerd/config.bak
+#sudo mv /etc/containerd/config.toml /etc/containerd/config.bak
 
 # Regenerate containerd config
-sudo containerd config default | sudo tee /etc/containerd/config.toml
+#sudo containerd config default | sudo tee /etc/containerd/config.toml
 
 # Restart containerd
-sudo systemctl restart containerd
+#sudo systemctl restart containerd
 
 # deploy
 sudo kubeadm init --v=6 --config kubeadm-config.yaml 
