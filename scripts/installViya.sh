@@ -50,10 +50,17 @@ config:
         sas.identities.providers.ldap.group:
             accountId: 'cn'
             baseDN: 'dc=acme,dc=com'
-            objectFilter: '(objectClass=groupOfUniqueNames)'
+            distinguishedName: 'none'
+            member: 'member'
+            memberOf: 'none'
+            objectClass: 'groupOfNames'
+            objectFilter: '(objectClass=groupOfNames)'
         sas.identities.providers.ldap.user:
-            accountId: 'cn'
+            accountId: 'uid'
             baseDN: 'dc=acme,dc=com'
+            distinguishedName: 'none'
+            memberOf: 'none'
+            objectClass: 'organizationalPerson'
             objectFilter: '(objectClass=person)'
         sas.identities:
             administrator: 'sasadm'
