@@ -52,6 +52,8 @@ sudo sysctl --system
 #sudo dnf install https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.6.28-3.1.el8.x86_64.rpm -y
 #sudo dnf install docker-ce --nobest -y
 
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
 sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 sudo sed -i 's/cri//g' /etc/containerd/config.toml
 
