@@ -58,6 +58,9 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --vnet-name ${az_project}-vnet --subnet ${az_project}-subnet \
 --admin-username azureuser \
 --generate-ssh-keys \
+--security-type TrustedLaunch \
+--enable-secure-boot false \ 
+--enable-vtpm false \ 
 --size ${az_vm_size} \
 --nsg ${az_project}-nsg \
 --os-disk-size-gb ${az_vm_disk_size_gb} \
