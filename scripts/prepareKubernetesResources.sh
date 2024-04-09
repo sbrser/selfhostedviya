@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Modify repo
-sed -i 's|/AppStream/|-stream/AppStream/|g' /etc/yum.repos.d/CentOS-Linux-AppStream.repo
+sudo sed -i 's|/AppStream/|-stream/AppStream/|g' /etc/yum.repos.d/CentOS-Linux-AppStream.repo
 
 # Define ingress_alias
 vm_location=`curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance/compute/location?api-version=2017-08-01&format=text"`
