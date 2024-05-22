@@ -189,8 +189,8 @@ kubectl -n viya get pods
 ```
 # Acknowledgments
 
-Henrique Danc (SAS Sr Solutions Architect) <br /> 
-Vitor Conde (Systems Engineer) <br /> 
-Gustavo Peixinho (Sr Associate Systems Engineer) <br /> 
+Henrique Danc (Principal Solutions Architect) <br /> 
+Vitor Conde (Sr. Systems Engineer) <br /> 
+Gustavo Peixinho (Cloud Technical Lead) <br /> 
 
 
