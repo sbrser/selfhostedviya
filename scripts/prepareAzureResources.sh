@@ -63,7 +63,7 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --os-disk-size-gb ${az_vm_disk_size_gb} \
 --public-ip-sku Standard --no-wait
 
-az vm update -n ${az_project}-vm1 -g ${az_project}-rg \
+az vm update -n ${az_project}-vm -g ${az_project}-rg \
 --security-type TrustedLaunch \
 --enable-secure-boot false \
 --enable-vtpm false
