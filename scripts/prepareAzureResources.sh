@@ -63,11 +63,6 @@ az vm create -n ${az_project}-vm -g ${az_project}-rg \
 --os-disk-size-gb ${az_vm_disk_size_gb} \
 --public-ip-sku Standard --no-wait
 
-az vm update -n ${az_project}-vm -g ${az_project}-rg \
---security-type TrustedLaunch \
---enable-secure-boot false \
---enable-vtpm false
-
 # Criar LB
 
 az network public-ip create \
@@ -153,3 +148,9 @@ az network nic ip-config address-pool add \
     --nic-name ${az_project}-vmVMNic \
     --resource-group ${az_project}-rg \
     --lb-name ${az_project}-lb
+
+# Atualizar VM
+az vm update -n ${az_project}-vm -g ${az_project}-rg \
+--security-type TrustedLaunch \
+--enable-secure-boot false \
+--enable-vtpm false
