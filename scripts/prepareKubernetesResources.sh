@@ -21,7 +21,8 @@ curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack
 # Grow OS Disk 
 
 sudo growpart /dev/sda 2
-sudo xfs_growfs /
+sudo pvresize /dev/sda2
+sudo lvresize -r -L +450G /dev/mapper/rootvg-rootlv
 
 # Swap disabled
 sudo swapoff -a
