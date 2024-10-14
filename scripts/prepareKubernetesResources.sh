@@ -116,8 +116,8 @@ maxPods: 300
 podsPerCore: 0
 evictionHard:
   memory.available: "500Mi"
-  nodefs.available: "1Gi"
-  imagefs.available: "1Gi"
+  nodefs.available: "4Gi"
+  imagefs.available: "4Gi"
 evictionMinimumReclaim:
   memory.available: "0Mi"
   nodefs.available: "500Mi"
