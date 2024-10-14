@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Disable firewall
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+
 # Modify repo
 #sudo sed -i 's|/AppStream/|-stream/AppStream/|g' /etc/yum.repos.d/CentOS-Linux-AppStream.repo
 #sudo sed -i 's|/BaseOS/|-stream/BaseOS/|g' /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
