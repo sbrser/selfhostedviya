@@ -71,7 +71,7 @@ sudo systemctl enable docker
 #  "exec-opts": ["native.cgroupdriver=systemd"]
 #}' | sudo tee -a /etc/docker/daemon.json
 
-Restart containerd
+# Restart containerd
 sudo systemctl restart containerd
 
 # Installing kubeadm, kubelet and kubectl
