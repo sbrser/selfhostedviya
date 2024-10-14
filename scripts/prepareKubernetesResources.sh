@@ -78,10 +78,10 @@ sudo systemctl restart containerd
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.29/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.29/rpm/repodata/repomd.xml.key
 exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 EOF
 
@@ -89,7 +89,7 @@ EOF
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-sudo dnf install -y kubelet-1.30.1 kubeadm-1.30.1 kubectl-1.30.1 --disableexcludes=kubernetes
+sudo dnf install -y kubelet-1.29.1 kubeadm-1.29.1 kubectl-1.29.1 --disableexcludes=kubernetes
 sudo systemctl enable --now kubelet
 sudo systemctl start kubelet
 
@@ -98,7 +98,7 @@ sudo systemctl start kubelet
 cat <<EOF | tee kubeadm-config.yaml
 kind: ClusterConfiguration
 apiVersion: kubeadm.k8s.io/v1beta3
-kubernetesVersion: v1.30.1
+kubernetesVersion: v1.29.1
 networking:
   podSubnet: "192.168.0.0/16"
   serviceSubnet: "192.169.0.0/16"
