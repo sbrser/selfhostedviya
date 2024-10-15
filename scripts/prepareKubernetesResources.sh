@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Disable firewall
-sudo systemctl stop firewalld
-sudo systemctl disable firewalld
+#sudo systemctl stop firewalld
+#sudo systemctl disable firewalld
 
 # Modify repo
-#sudo sed -i 's|/AppStream/|-stream/AppStream/|g' /etc/yum.repos.d/CentOS-Linux-AppStream.repo
-#sudo sed -i 's|/BaseOS/|-stream/BaseOS/|g' /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+sudo sed -i 's|/AppStream/|-stream/AppStream/|g' /etc/yum.repos.d/CentOS-Linux-AppStream.repo
+sudo sed -i 's|/BaseOS/|-stream/BaseOS/|g' /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
 
 # Define ingress_alias
 vm_location=`curl -s -H Metadata:true --noproxy "*" "http://169.254.169.254/metadata/instance/compute/location?api-version=2017-08-01&format=text"`
@@ -25,8 +25,9 @@ curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack
 # Grow OS Disk 
 
 sudo growpart /dev/sda 2
-sudo pvresize /dev/sda2
-sudo lvresize -r -L +450G /dev/mapper/rootvg-rootlv
+sudo xfs_growfs /
+#sudo pvresize /dev/sda2
+#sudo lvresize -r -L +450G /dev/mapper/rootvg-rootlv
 
 # Swap disabled
 sudo swapoff -a
@@ -58,8 +59,8 @@ sudo sysctl --system
 #sudo dnf install https://download.docker.com/linux/centos/8/x86_64/stable/Packages/containerd.io-1.6.28-3.1.el8.x86_64.rpm -y
 #sudo dnf install docker-ce --nobest -y
 
-#sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+#sudo yum-config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo
 
 sudo yum install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 sudo sed -i 's/cri//g' /etc/containerd/config.toml
@@ -78,10 +79,10 @@ sudo systemctl restart containerd
 cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=Kubernetes
-baseurl=https://pkgs.k8s.io/core:/stable:/v1.29/rpm/
+baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
 enabled=1
 gpgcheck=1
-gpgkey=https://pkgs.k8s.io/core:/stable:/v1.29/rpm/repodata/repomd.xml.key
+gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
 exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
 EOF
 
@@ -89,7 +90,7 @@ EOF
 sudo setenforce 0
 sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
-sudo dnf install -y kubelet-1.29.1 kubeadm-1.29.1 kubectl-1.29.1 --disableexcludes=kubernetes
+sudo dnf install -y kubelet-1.30.1 kubeadm-1.30.1 kubectl-1.30.1 --disableexcludes=kubernetes
 sudo systemctl enable --now kubelet
 sudo systemctl start kubelet
 
@@ -98,7 +99,7 @@ sudo systemctl start kubelet
 cat <<EOF | tee kubeadm-config.yaml
 kind: ClusterConfiguration
 apiVersion: kubeadm.k8s.io/v1beta3
-kubernetesVersion: v1.29.1
+kubernetesVersion: v1.30.1
 networking:
   podSubnet: "192.168.0.0/16"
   serviceSubnet: "192.169.0.0/16"
