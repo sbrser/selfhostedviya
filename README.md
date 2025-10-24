@@ -29,7 +29,7 @@ export az_subscription=subscription        # Replace with the subscription name 
 export az_region=region                    # Replace with the azure region you want to create the resources (Ex.: eastus, westus2...) 
 export az_project=projectname              # Replace with the name of the project you want. **USE ONLY LETTERS WITH NO SPACES.  
 export az_public_access_cidrs="x.x.x.x/yy $cloudshellIP" # Replace with the public IP CIDR that will be used to access Viya.  
-export az_vm_size=Standard_E32s_v5         # Standard_E32s_v5 is the suggestion for this project. 
+export az_vm_size=Standard_E32as_v5         # Standard_E32s_v5 is the suggestion for this project. 
 export az_vm_disk_size_gb=300              # OS disk size 300GB is the suggestion for this project. 
 ```
 
